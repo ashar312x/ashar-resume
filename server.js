@@ -7,7 +7,7 @@ const { createServer } = require("http");
 const { existsSync, statSync, createReadStream } = require("fs");
 const { extname, join, normalize } = require("path");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3022;
 const OUT_DIR = join(__dirname, "out");
 
 const MIME_TYPES = {
