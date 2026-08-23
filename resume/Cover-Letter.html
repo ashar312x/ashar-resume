@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashar Ashfaq &mdash; Cover Letter</title>
+  <!--
+    Reusable cover-letter template. The <style> block below is copied verbatim
+    from resume/resume.html so both documents stay visually identical — keep it
+    byte-for-byte in sync rather than editing it here.
+
+    To use: copy this file into the application folder as
+    <Job-Title>-Cover-Letter.html, then replace every {{PLACEHOLDER}} and the
+    four body paragraphs. Only the existing classes (.page, header, .contact,
+    .date, .role, .summary) are needed — add no new CSS.
+  -->
+  <style>
+    :root {
+      --accent: #1f7ab0;
+      --ink: #222;
+      --muted: #555;
+      --line: #d9d9d9;
+      --bullet: var(--accent);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f4f5f6;
+      color: var(--ink);
+      font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    .page {
+      max-width: 820px;
+      margin: 32px auto;
+      background: #fff;
+      padding: 48px 56px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    h1 {
+      font-size: 44px;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+    .contact {
+      text-align: right;
+      font-size: 13px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--muted);
+    }
+    .contact a { color: var(--accent); text-decoration: none; }
+    .contact div { margin-bottom: 4px; }
+    .summary {
+      margin: 20px 0 8px;
+      font-size: 15px;
+      color: #333;
+    }
+    h2 {
+      font-size: 24px;
+      margin: 28px 0 4px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 40px;
+    }
+    ul { margin: 8px 0; padding-left: 20px; }
+    li { margin-bottom: 6px; font-size: 14px; }
+    li::marker { color: var(--bullet); }
+    .job { margin: 14px 0; }
+    .date {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .role {
+      font-size: 19px;
+      font-weight: bold;
+      margin: 2px 0 4px;
+    }
+    .role .accent { color: var(--accent); }
+    .job p { margin: 0; font-size: 14px; color: #444; }
+    .edu-item { margin-bottom: 10px; }
+    .edu-item .role { font-size: 18px; }
+    @media (max-width: 640px) {
+      .page { padding: 28px 22px; }
+      h1 { font-size: 34px; }
+      .contact { text-align: left; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { box-shadow: none; margin: 0; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Ashar Ashfaq</h1>
+      <div class="contact">
+        <div><a href="tel:+923442484597">+92 344 248 4597</a> &#9742;</div>
+        <div><a href="mailto:ashar.ashfaq2@gmail.com">ashar.ashfaq2@gmail.com</a> &#9993;</div>
+        <div><a href="https://www.linkedin.com/in/ashar-siddiqui-795183113/" target="_blank" rel="noopener noreferrer">LinkedIn</a> in</div>
+        <div><a href="https://asharashfaque.com/" target="_blank" rel="noopener noreferrer">asharashfaque.com</a> &#127760;</div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Cover Letter</h2>
+      <div class="date">{{DATE — e.g. 14 August 2026}}</div>
+      <div class="role"><span class="accent">{{JOB TITLE}}</span> / {{COMPANY}}</div>
+
+      <!--
+        Paragraph 1 — the opening. Name the role and company, then lead with the
+        single strongest credential for THIS job (years in the core stack, current
+        title, team size led) and one line of hard, verifiable outcomes pulled
+        from profile.md. Numbers here must already exist in profile.md.
+      -->
+      <p class="summary">
+        {{OPENING: applying for <role> at <company>. Strongest credential for this
+        JD + current role + the metrics that back it.}}
+      </p>
+
+      <!--
+        Paragraph 2 — the core match. Take the JD's central requirement and show
+        the longest, deepest evidence for it: specific stacks, specific employers,
+        specific systems. This is the paragraph that earns the interview.
+      -->
+      <p class="summary">
+        {{CORE MATCH: the JD's main requirement, evidenced with named
+        technologies, employers and systems from profile.md.}}
+      </p>
+
+      <!--
+        Paragraph 3 — secondary requirements, then the honest gap. Cover the JD's
+        next-most-important asks, then state plainly any requirement not evidenced
+        in profile.md. Never invent coverage. Name the gap, say what is actually
+        true, and offer to be held to the standard — do not dress it up.
+      -->
+      <p class="summary">
+        {{SECONDARY REQUIREMENTS + HONEST GAP: what is genuinely met, then the
+        unmet requirement stated plainly with what is actually true instead.}}
+      </p>
+
+      <!--
+        Paragraph 4 — logistics and close. Raise any location / on-site / timezone
+        question directly rather than assuming. Link the portfolio, state interest
+        in the specific team, thank them.
+      -->
+      <p class="summary">
+        {{LOGISTICS + CLOSE: location or on-site question asked directly, link to
+        <a href="https://asharashfaque.com/">asharashfaque.com</a>, interest in the team,
+        thanks.}}
+      </p>
+
+      <p class="summary">
+        Sincerely,<br />
+        Ashar Ashfaq
+      </p>
+    </section>
+  </div>
+</body>
+</html>

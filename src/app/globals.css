@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0b0a09;
+  --color-ink-raised: #141210;
+  --color-bone: #ede7de;
+  --color-mute: #8a7e73;
+  --color-hairline: #2a2521;
+  --color-signal: #ff4d19;
+
+  --font-display: var(--font-instrument), Georgia, serif;
+  --font-body: var(--font-familjen), Helvetica, sans-serif;
+  --font-mono: var(--font-martian), ui-monospace, monospace;
+}
+
+@layer base {
+  /* Tailwind only emits theme vars referenced by generated utilities, so the
+     font aliases are restated here for the hand-written classes below. */
+  :root {
+    --font-display: var(--font-instrument), Georgia, serif;
+    --font-body: var(--font-familjen), Helvetica, sans-serif;
+    --font-mono: var(--font-martian), ui-monospace, monospace;
+  }
+
+  html {
+    background: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    color: var(--color-bone);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-mute);
+}
+
+/* Shell ---------------------------------------------------------------- */
+
+.shell {
+  width: 100%;
+  max-width: 96rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+}
+
+/* Display type --------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Hover -----------------------------------------------------------------
+   Deliberately asymmetric: engaging takes longer than releasing. Symmetric
+   timing reads sluggish, and a fast retreat is what makes a control feel
+   responsive. Same numbers the WebGL plates ease their hover uniform on. */
+
+.hover-signal {
+  --hover-out: 200ms;
+  --hover-in: 320ms;
+  transition:
+    color var(--hover-out) cubic-bezier(0.16, 1, 0.3, 1),
+    border-color var(--hover-out) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-signal:hover,
+.hover-signal:focus-visible {
+  color: var(--color-signal);
+  transition-duration: var(--hover-in);
+}
+
+/* Per-letter stagger for short labels. The letters roll up one after another
+   on approach, and drop back together — the stagger is halved on release so
+   the label never feels like it is still unwinding after the cursor has gone. */
+
+.letters {
+  display: inline-flex;
+  white-space: pre;
+}
+
+.letter {
+  display: inline-block;
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 15ms);
+}
+
+a:hover .letter,
+a:focus-visible .letter {
+  transform: translateY(-0.16em);
+  color: var(--color-signal);
+  transition-duration: 320ms;
+  transition-delay: calc(var(--i, 0) * 30ms);
+}
+
+/* Line reveal: JS only flips `is-revealed` on the parent. ---------------- */
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.135em;
+}
+
+.line > span {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition:
+    transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0s);
+}
+
+.is-revealed .line > span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0s);
+}
+
+.is-revealed.fade,
+.is-revealed .fade {
+  opacity: 1;
+  transform: none;
+}
+
+/* Work plates ---------------------------------------------------------- */
+
+/* The WebGL plane draws over this box. Until the canvas reports ready (or if
+   WebGL is unavailable), a flat plate stands in so nothing looks broken. */
+.plate {
+  background: linear-gradient(
+    130deg,
+    var(--color-ink-raised),
+    color-mix(in oklab, var(--color-signal) 22%, var(--color-ink))
+  );
+  border: 1px solid var(--color-hairline);
+}
+
+.webgl-ready .plate {
+  background: none;
+  border-color: transparent;
+}
+
+/* Atmosphere: fixed grain + vignette over everything, never interactive. -- */
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: drift 0.7s steps(2) infinite;
+}
+
+.atmosphere::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 42%,
+    rgba(11, 10, 9, 0.7) 100%
+  );
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-2%, 1.5%);
+  }
+  100% {
+    transform: translate(1.5%, -1%);
+  }
+}
+
+/* Capabilities ---------------------------------------------------------
+   Skills are legible on their own. `is-field` is added by SkillField only when
+   a fine pointer is present, and hands opacity over to `--near` — the
+   normalized closeness of the cursor, written per frame. No transition on
+   opacity: the value is already eased in JS, and a transition on top of a
+   per-frame write only adds lag. */
+
+.skill-item {
+  --near: 0;
+  color: var(--color-mute);
+  transition: color 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-field .skill-item {
+  opacity: calc(0.26 + 0.74 * var(--near));
+  color: color-mix(
+    in oklab,
+    var(--color-mute),
+    var(--color-bone) calc(var(--near) * 100%)
+  );
+}
+
+.skill-item:hover {
+  color: var(--color-signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere::before {
+    animation: none;
+  }
+
+  /* SkillField never mounts the field, so `--near` stays unused. */
+  .skill-item {
+    opacity: 1;
+    transition: none;
+  }
+
+  .line > span,
+  .fade {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+
+  .letter {
+    transition: color 200ms linear;
+    transition-delay: 0s;
+  }
+
+  a:hover .letter,
+  a:focus-visible .letter {
+    transform: none;
+    transition-delay: 0s;
+  }
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashar Ashfaq — Senior Software Engineer &amp; Tech Lead</title>
+<style>
+  :root{
+    --ink:#12161c;
+    --body:#39404a;
+    --muted:#6b7480;
+    --rule:#e2e6ea;
+    --accent:#1f5f8b;
+    --accent-soft:#eaf1f7;
+    --bg:#f5f6f8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--body);
+    line-height:1.5;
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+    padding:32px 16px;
+  }
+  .page{
+    max-width:860px;
+    margin:0 auto;
+    background:#fff;
+    padding:48px 56px 56px;
+    box-shadow:0 1px 3px rgba(16,24,40,.08),0 12px 40px rgba(16,24,40,.08);
+    border-radius:4px;
+  }
+
+  /* Header */
+  header{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:26px;}
+  h1{
+    font-size:34px;letter-spacing:.06em;font-weight:700;color:var(--ink);
+    text-transform:uppercase;line-height:1.1;
+  }
+  .title{
+    font-size:14.5px;font-weight:600;color:var(--accent);
+    letter-spacing:.05em;text-transform:uppercase;margin-top:6px;
+  }
+  .contact{
+    margin-top:12px;font-size:13px;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:6px 14px;
+  }
+  .contact a{color:var(--accent);text-decoration:none;}
+  .contact a:hover{text-decoration:underline;}
+  .contact span.sep{color:var(--rule);}
+
+  /* Sections */
+  section{margin-bottom:24px;}
+  h2{
+    font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--ink);padding-bottom:6px;margin-bottom:14px;
+    border-bottom:1px solid var(--rule);
+  }
+  p.summary{text-align:justify;color:var(--body);}
+
+  /* Skills */
+  .skills{display:grid;grid-template-columns:150px 1fr;gap:8px 18px;font-size:13.2px;}
+  .skills dt{font-weight:600;color:var(--ink);}
+  .skills dd{color:var(--body);}
+
+  /* Experience */
+  .job{margin-bottom:20px;break-inside:avoid;}
+  .job:last-child{margin-bottom:0;}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .role{font-size:15px;font-weight:700;color:var(--ink);}
+  .company{font-size:13.5px;font-weight:600;color:var(--accent);}
+  .meta{font-size:12.5px;color:var(--muted);white-space:nowrap;font-style:italic;}
+  .job ul{margin:8px 0 0 0;padding-left:18px;}
+  .job li{margin-bottom:4px;padding-left:2px;}
+  li::marker{color:var(--accent);}
+
+  /* Two column bottom */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+
+  /* Education */
+  .edu{margin-bottom:12px;}
+  .edu .deg{font-weight:700;color:var(--ink);}
+  .edu .inst{font-size:13px;}
+
+  /* Projects */
+  .proj{margin-bottom:9px;}
+  .proj .name{font-weight:650;color:var(--ink);}
+  .proj .name a{color:var(--accent);text-decoration:none;}
+  .proj .name a:hover{text-decoration:underline;}
+  .proj .desc{font-size:12.8px;color:var(--body);}
+  .proj .role{font-size:12px;font-weight:600;color:var(--muted);display:inline;}
+
+  .tag{
+    display:inline-block;background:var(--accent-soft);color:var(--accent);
+    font-size:11px;font-weight:600;padding:1px 7px;border-radius:3px;margin-left:6px;
+    vertical-align:1px;
+  }
+
+  @media (max-width:640px){
+    body{padding:0;}
+    .page{padding:28px 20px 36px;box-shadow:none;border-radius:0;}
+    h1{font-size:26px;}
+    .skills{grid-template-columns:1fr;gap:2px;}
+    .skills dd{margin-bottom:8px;}
+    .grid2{grid-template-columns:1fr;}
+  }
+
+  @media print{
+    @page{margin:12mm;}
+    body{background:#fff;padding:0;font-size:10.5pt;line-height:1.38;}
+    .page{box-shadow:none;max-width:none;padding:0;border-radius:0;}
+    a{color:var(--accent) !important;}
+    section{margin-bottom:14px;page-break-inside:auto;}
+    .job,.edu,.proj{page-break-inside:avoid;}
+    h1{font-size:24pt;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>Ashar Ashfaq</h1>
+    <div class="title">Senior Software Engineer &nbsp;·&nbsp; Tech Lead</div>
+    <div class="contact">
+      <span>Karachi, Pakistan</span><span class="sep">|</span>
+      <span>+92 344 248 4597</span><span class="sep">|</span>
+      <a href="mailto:ashar.ashfaq2@gmail.com">ashar.ashfaq2@gmail.com</a><span class="sep">|</span>
+      <a href="https://www.linkedin.com/in/ashar-siddiqui-795183113/">LinkedIn</a><span class="sep">|</span>
+      <a href="https://asharashfaque.com/">asharashfaque.com</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Professional Summary</h2>
+    <p class="summary">Senior Software Engineer and Tech Lead with 7+ years of experience designing and delivering scalable, enterprise-grade solutions across Fintech, ERP, and AI domains. Proven track record of leading cross-functional teams, modernizing legacy systems, and building microservices architectures. Expertise in Node.js, NestJS, React, and cloud infrastructure, with hands-on experience in AI/LLM integration including OpenAI APIs, Anthropic Claude, prompt engineering, RAG pipelines, and AI-powered automation. Skilled in integrating payment processing systems (I2C), accounting platforms (QuickBooks, Xero via Codat), and building intelligent chatbots and AI agents.</p>
+  </section>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <dl class="skills">
+      <dt>Backend</dt><dd>Node.js, NestJS, Express.js, REST APIs, Microservices, Kafka, JWT Authentication</dd>
+      <dt>Frontend</dt><dd>React, React Native, JavaScript, HTML, CSS</dd>
+      <dt>Databases</dt><dd>PostgreSQL, MySQL, MSSQL, MongoDB, Firebase, RealmDB, Redis</dd>
+      <dt>Cloud &amp; DevOps</dt><dd>AWS (Lambda, EC2), Google Compute Engine, Docker, CI/CD Pipelines, Apache</dd>
+      <dt>AI &amp; LLMs</dt><dd>OpenAI APIs &amp; Assistants, Anthropic API, Claude Code, Prompt Engineering, AI Agents, RAG, LLM-Powered Automation, AI Chatbots</dd>
+      <dt>Integrations</dt><dd>Codat, I2C Payment Processing, WhatsApp Cloud APIs, SMS Gateways</dd>
+      <dt>Architecture</dt><dd>System Design, Software Architecture, MVC, MVVM, OOP, Data Structures, Caching (Hazelcast, Redis)</dd>
+      <dt>Tools &amp; Other</dt><dd>Git, Claude Code, Cursor, GitHub Copilot, Blockchain/Solidity (test projects)</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2>Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Senior Software Engineer &amp; Tech Lead</div>
+          <div class="company">Xavia Solutions — Karachi, Pakistan</div>
+        </div>
+        <div class="meta">Aug 2024 – Present</div>
+      </div>
+      <ul>
+        <li>Lead cross-functional engineering teams in designing and delivering enterprise-grade solutions across Fintech, ERP, and AI verticals.</li>
+        <li>Architect scalable backend and frontend systems for both proprietary in-house products and client-facing service projects.</li>
+        <li>Built <strong>Kolabrya AI</strong>, an AI-powered meeting assistant that captures live transcriptions and generates analytics, graphs, and notes using OpenAI Assistants.</li>
+        <li>Developed a WhatsApp chatbot integrated with ChatGPT for intelligent, context-aware automated customer responses.</li>
+        <li>Created AI-driven tools including a compliance document generator and a real estate listing content generator using OpenAI APIs.</li>
+        <li>Manage product flow, client requirement gathering, technical documentation, and sprint planning across multiple concurrent projects.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Senior Software Engineer <span class="tag">Development Lead</span></div>
+          <div class="company">Maybank via AMK Group — Kuala Lumpur, Malaysia (Contract)</div>
+        </div>
+        <div class="meta">Aug 2024 – Aug 2025</div>
+      </div>
+      <ul>
+        <li>Promoted from backend developer to Development Lead within months, managing a 4-member Lead Management Development team for Malaysia's largest bank.</li>
+        <li>Designed and built a microservices-based backend using NestJS to replace a legacy Salesforce system with a modern, customer-centric solution.</li>
+        <li>Implemented real-time data streaming with Kafka and distributed caching with Hazelcast to optimize product recommendation pipelines.</li>
+        <li>Improved the product onboarding process for sales teams, enabling personalized product presentations tailored to individual customer needs.</li>
+        <li>Managed database architecture and query optimization using MSSQL for high-volume transactional data.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Senior Software Engineer</div>
+          <div class="company">Caary Capital — Remote (Canada)</div>
+        </div>
+        <div class="meta">Aug 2022 – Jul 2024</div>
+      </div>
+      <ul>
+        <li>Led development of the accounting and expense management module for a business credit and spend management platform serving Canadian SMEs.</li>
+        <li>Integrated QuickBooks Online and Xero via Codat APIs, enabling seamless bi-directional transaction synchronization.</li>
+        <li>Implemented bulk transaction sync, multi-currency (FX) support, and customizable accounting rules, delivering functionality comparable to Brex.</li>
+        <li>Managed a Node.js middleware layer handling tokenization, encryption, logging, and data transformation between a .NET backend and React frontend.</li>
+        <li>Transitioned to .NET development to support backend scalability, gaining full-stack proficiency across the entire codebase.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Senior Full Stack Developer</div>
+          <div class="company">CreditBook — Karachi, Pakistan</div>
+        </div>
+        <div class="meta">May 2022 – Jul 2022</div>
+      </div>
+      <ul>
+        <li>Contributed to a high-growth fintech startup with 700,000+ installs and 60,000+ daily active users focused on improving financial outcomes for entrepreneurs.</li>
+        <li>Managed backend servers and AWS Lambda services to ensure platform scalability for a rapidly growing user base.</li>
+        <li>Developed and maintained mobile application features using React Native.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Full Stack Developer</div>
+          <div class="company">M3 Technologies Pakistan Pvt. Ltd. — Karachi, Pakistan</div>
+        </div>
+        <div class="meta">Mar 2021 – May 2022</div>
+      </div>
+      <ul>
+        <li>Delivered diverse projects including data visualization dashboards, fintech solutions, and credit card-based applications as a MERN stack developer.</li>
+        <li>Built WhatsApp and SMS gateway integrations for telecom-grade value-added services (VAS) serving corporate clients across Pakistan.</li>
+        <li>Developed RESTful APIs and designed database schemas using MySQL, MongoDB, and PostgreSQL.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div>
+          <div class="role">Tech Lead <span class="tag">promoted from Android Developer</span></div>
+          <div class="company">TrulyFuture Pvt. Ltd. — Karachi, Pakistan</div>
+        </div>
+        <div class="meta">Oct 2018 – Mar 2021</div>
+      </div>
+      <ul>
+        <li>Progressed from Android Developer to Tech Lead and eventually CTO, demonstrating rapid growth and leadership in a startup environment.</li>
+        <li>Led the development of a ride-hailing application from concept to launch as the company's first product.</li>
+        <li>Transitioned to full-stack MERN development, building APIs and designing database architectures using Node.js and MySQL.</li>
+        <li>Managed client relationships as technical lead, gathering requirements and delivering web-based solutions for multiple service clients.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Key Projects</h2>
+    <div class="proj"><span class="name"><a href="https://kolabrya.ai">Kolabrya AI</a></span> — <span class="desc">AI meeting assistant with live transcription, analytics dashboards, and OpenAI Assistant integration.</span> <span class="role">Backend Lead &amp; Co-Product Lead</span></div>
+    <div class="proj"><span class="name"><a href="https://caary.com">Caary Capital</a></span> — <span class="desc">Business credit and spend management platform; built the accounting module with QuickBooks/Xero integration via Codat.</span> <span class="role">Lead Developer</span></div>
+    <div class="proj"><span class="name">Maybank Lead Management System</span> — <span class="desc">Modernized a legacy Salesforce system into a microservices solution with Kafka, Hazelcast, and NestJS.</span> <span class="role">Development Lead</span></div>
+    <div class="proj"><span class="name">Complaint AI</span> — <span class="desc">AI-powered compliance document generator using OpenAI.</span> <span class="role">Backend Developer</span></div>
+    <div class="proj"><span class="name">WhatsApp ChatBot (ChatGPT)</span> — <span class="desc">Context-aware chatbot built on WhatsApp Cloud APIs and ChatGPT.</span> <span class="role">Full Stack Developer</span></div>
+    <div class="proj"><span class="name"><a href="https://double-cars.com">Double Cars</a></span> — <span class="desc">Full-stack React and Node.js application with MySQL.</span> <span class="role">Developer</span></div>
+    <div class="proj"><span class="name"><a href="https://btag.xaviasolutions.com">Digital Business Card</a></span> — <span class="desc">React and Node.js web application.</span> <span class="role">Developer</span></div>
+    <div class="proj"><span class="name">CreditBook</span> — <span class="desc">Fintech mobile app (React Native) with Node.js backend and Lambda services.</span> <span class="role">Senior Full Stack Developer</span></div>
+    <div class="proj"><span class="name">Airify</span> — <span class="desc">Analytics dashboard built with React and Node.js.</span> <span class="role">Developer</span></div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="grid2">
+      <div class="edu">
+        <div class="deg">BS Computer Science (BSCS)</div>
+        <div class="inst">University of Karachi (UBIT) · 2015 – 2019</div>
+      </div>
+      <div class="edu">
+        <div class="deg">Intermediate (Pre-Engineering)</div>
+        <div class="inst">SRE Majeed College · 2013 – 2015</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
