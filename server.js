@@ -1,83 +1,48 @@
-// Static file server for the `next build` static export (next.config.ts sets
-// output: "export" — there is no Next.js server to attach to in this mode,
-// so we can't use the createServer()/getRequestHandler() custom-server
-// pattern. This serves the exported `out/` folder the same way Apache does
-// in production, just on localhost:4000 for local testing.
-const { createServer } = require("http");
-const { existsSync, statSync, createReadStream } = require("fs");
-const { extname, join, normalize } = require("path");
+import dotenv from "dotenv";
 
-const PORT = process.env.PORT || 3022;
-const OUT_DIR = join(__dirname, "out");
+dotenv.config();
 
-const MIME_TYPES = {
-  ".html": "text/html; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".mjs": "text/javascript; charset=utf-8",
-  ".css": "text/css; charset=utf-8",
-  ".json": "application/json; charset=utf-8",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".gif": "image/gif",
-  ".svg": "image/svg+xml",
-  ".ico": "image/x-icon",
-  ".webp": "image/webp",
-  ".avif": "image/avif",
-  ".woff": "font/woff",
-  ".woff2": "font/woff2",
-  ".ttf": "font/ttf",
-  ".txt": "text/plain; charset=utf-8",
-  ".xml": "application/xml; charset=utf-8",
-  ".webmanifest": "application/manifest+json",
-};
+const app = express();
+const port = Number(process.env.SERVER_PORT || 3032);
+const host = process.env.SERVER_HOST || "0.0.0.0";
+const enableHttps = process.env.SERVER_ENABLE_HTTPS === "true";
+const staticDir = process.env.SERVER_STATIC_DIR || "dist";
+const indexFile = process.env.SERVER_INDEX_FILE || "index.html";
+const sslKeyPath = process.env.SSL_KEY_PATH || "";
+const sslCertPath = process.env.SSL_CERT_PATH || "";
+const sslCaPath = process.env.SSL_CA_PATH || "";
 
-function resolvePath(urlPath) {
-  const decoded = decodeURIComponent(urlPath.split("?")[0]);
-  const safePath = normalize(decoded).replace(/^(\.\.[/\\])+/, "");
-  let filePath = join(OUT_DIR, safePath);
+const distPath = path.join(process.cwd(), staticDir);
 
-  if (existsSync(filePath) && statSync(filePath).isDirectory()) {
-    filePath = join(filePath, "index.html");
-  }
+app.use(express.static(distPath));
+app.get("/*", (req, res) => {
+  const indexPath = path.join(distPath, indexFile);
 
-  // next.config.ts sets trailingSlash: true, so routes are exported as
-  // `/foo/index.html`. Fall back to `<path>.html` for any that aren't.
-  if (!existsSync(filePath) && !extname(filePath)) {
-    const withHtml = `${filePath}.html`;
-    if (existsSync(withHtml)) filePath = withHtml;
-  }
-
-  return filePath;
-}
-
-const server = createServer((req, res) => {
-  const filePath = resolvePath(req.url || "/");
-
-  if (!existsSync(filePath) || !statSync(filePath).isFile()) {
-    const notFoundPath = join(OUT_DIR, "404.html");
-    if (existsSync(notFoundPath)) {
-      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-      createReadStream(notFoundPath).pipe(res);
-    } else {
-      res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-      res.end("404 Not Found");
+  fs.readFile(indexPath, (error, fileBuffer) => {
+    if (error) {
+      console.error("node-error", error);
+      return res.status(500).send("Internal Server Error");
     }
-    return;
-  }
 
-  const contentType = MIME_TYPES[extname(filePath)] || "application/octet-stream";
-  res.writeHead(200, { "Content-Type": contentType });
-  createReadStream(filePath).pipe(res);
+    res.setHeader("Content-Type", "text/html");
+    res.setHeader("Content-Security-Policy", "frame-ancestors 'self';");
+    res.send(fileBuffer);
+  });
 });
 
-if (!existsSync(OUT_DIR)) {
-  console.error(
-    `> No "out/" directory found. Run "npm run build" first to generate the static export, then re-run "node server.js".`
-  );
-  process.exit(1);
-}
+const server = enableHttps
+  ? https.createServer(
+      {
+        key: fs.readFileSync(sslKeyPath),
+        cert: fs.readFileSync(sslCertPath),
+        ca: sslCaPath ? fs.readFileSync(sslCaPath) : undefined,
+      },
+      app
+    )
+  : http.createServer(app);
 
-server.listen(PORT, () => {
-  console.log(`> Serving out/ at http://localhost:${PORT}`);
+server.listen(port, host, () => {
+  console.log(
+    `React server listening on ${enableHttps ? "https" : "http"}://${host}:${port}`
+  );
 });
