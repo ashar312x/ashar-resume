@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const port = Number(process.env.SERVER_PORT || 3032);
+const port = Number(process.env.SERVER_PORT || 3022);
 const host = process.env.SERVER_HOST || "0.0.0.0";
 const enableHttps = process.env.SERVER_ENABLE_HTTPS === "true";
 const staticDir = process.env.SERVER_STATIC_DIR || "dist";
